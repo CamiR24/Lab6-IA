@@ -16,7 +16,7 @@ def main():
     game.drop_piece(2, 1)
     game.drop_piece(4, -1)
 
-    depth = 4
+    depth = 5
 
     print("Estado inicial:")
     print(game.board)
@@ -25,7 +25,7 @@ def main():
     score_mm, move_mm, nodes_mm = minimax(game, depth, True)
     end_time = time.time()
 
-    print("Minimax")
+    print("\nMinimax")
     print("Mejor movimiento:", move_mm)
     print("Score:", score_mm)
     print("Nodos visitados:", nodes_mm)
@@ -39,7 +39,7 @@ def main():
 
     end_time = time.time()
 
-    print("Alpha-Beta")
+    print("\nAlpha-Beta")
     print("Mejor movimiento:", move_ab)
     print("Score:", score_ab)
     print("Nodos visitados:", nodes_ab)
