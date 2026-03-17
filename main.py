@@ -4,6 +4,7 @@ import time
 from Connect4 import Connect4
 from Minimax import minimax
 from AlphaBeta import minimax_ab
+from TDtrain import train_agent, evaluate
 
 
 def main():
@@ -48,6 +49,15 @@ def main():
     reduction = ((nodes_mm - nodes_ab) / nodes_mm) * 100 #compara la cantidad de nodos entre ambos algoritmos
 
     print("Reducción de nodos:", round(reduction, 2), "%")
+
+    print ("\nTD learning")
+    print("Entrenando agente...")
+    agent = train_agent(episodes=50000)
+
+    print("Evaluando agente...")
+    win_rate = evaluate(agent)
+
+    print("Win rate vs random:", win_rate)
 
 
 if __name__ == "__main__":
