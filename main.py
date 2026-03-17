@@ -53,10 +53,8 @@ def main():
     print ("\nTD learning")
     print("Entrenando agente...")
     agent = train_agent(episodes=50000)
-
     print("Evaluando agente...")
     win_rate = evaluate(agent)
-
     print("Win rate vs random:", win_rate)
 
 

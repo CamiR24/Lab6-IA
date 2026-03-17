@@ -28,13 +28,16 @@ class TDAgent:
     def choose_action(self, board):
         valid_moves = board.actions()
 
-        #exploración
-        if random.random() < self.epsilon:
-            return random.choice(valid_moves)
+        if len(valid_moves) == 0:
+            return None
 
-        #explotación
+        # exploración
+        if random.random() < self.epsilon:
+            return int(random.choice(valid_moves))
+
+        # explotación
         best_value = -math.inf
-        best_action = None
+        best_action = valid_moves[0]  # 👈 fallback seguro
 
         for a in valid_moves:
             new_board = board.copy()
@@ -46,7 +49,7 @@ class TDAgent:
                 best_value = v
                 best_action = a
 
-        return best_action
+        return int(best_action)
 
     #función update TD(0)
     def update(self, state, reward, next_state):
