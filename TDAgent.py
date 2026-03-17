@@ -10,6 +10,7 @@ def extract_features(board):
         np.sum(grid == -1),  #fichas oponente
         np.sum(grid[:, 3] == 1),  #control del centro
         np.sum(grid[:, 3] == -1),
+        board.evaluate()
     ])
 
 class TDAgent:
