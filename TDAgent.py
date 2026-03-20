@@ -6,15 +6,15 @@ def extract_features(board):
     grid = board.board
 
     return np.array([
-        np.sum(grid == 1),   #fichas propias
-        np.sum(grid == -1),  #fichas oponente
-        np.sum(grid[:, 3] == 1),  #control del centro
-        np.sum(grid[:, 3] == -1),
-        board.evaluate()
+        np.sum(grid == 1) / 42,
+        np.sum(grid == -1) / 42,
+        np.sum(grid[:, 3] == 1) / 6,
+        np.sum(grid[:, 3] == -1) / 6,
+        board.evaluate() / 1000
     ])
 
 class TDAgent:
-    def __init__(self, n_features, alpha=0.01, gamma=0.9, epsilon=0.1):
+    def __init__(self, n_features, alpha=0.001, gamma=0.9, epsilon=0.1):
         self.weights = np.random.randn(n_features)
         self.alpha = alpha
         self.gamma = gamma
@@ -61,3 +61,5 @@ class TDAgent:
         features = extract_features(state)
 
         self.weights += self.alpha * td_error * features
+
+        self.weights = np.clip(self.weights, -10, 10)

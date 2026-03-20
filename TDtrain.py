@@ -24,7 +24,7 @@ def evaluate(agent, games=1000):
 
     return wins / games
 
-def train_agent(episodes=50000):
+def train_agent(episodes=30000):
 
     n_features = 5
     agent = TDAgent(n_features=n_features, alpha=0.01, gamma=0.9, epsilon=0.1)
@@ -61,7 +61,7 @@ def train_agent(episodes=50000):
             state = next_state
             player *= -1
 
-        agent.epsilon = max(0.05, agent.epsilon * 0.995)
+        agent.epsilon = max(0.05, agent.epsilon * 0.999)
 
         if episode % 1000 == 0:
             print(f"Episodio {episode} | epsilon: {agent.epsilon:.3f}")
